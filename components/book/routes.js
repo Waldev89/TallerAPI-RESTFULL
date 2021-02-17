@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router()
-const multer = require('multer')
+// const multer = require('multer')
 const { createBook, deleteBook, getBook, getBooks, updateBook } = require('./actions')
-const coverUploader = multer({ dest: 'covers/' })
-const setCover = require('../../middlewares/setCover')
+// const coverUploader = multer({ dest: 'covers/' })
+// const setCover = require('../../middlewares/setCover')
 
 // GET all
 router.get('/', getBooks)
@@ -12,10 +12,12 @@ router.get('/', getBooks)
 router.get('/:id', getBook)
 
 // POST Create a Book
-router.post('/', coverUploader.single('cover'), setCover, createBook)
+router.post('/', createBook)
+// router.post('/', coverUploader.single('cover'), setCover, createBook) -->Cuando se agregan imágenes de portadas?
 
 // PUT Update a Book's info
-router.put('/:id', coverUploader.single('cover'), setCover, updateBook)
+router.put('/:id', updateBook)
+// router.put('/:id', coverUploader.single('cover'), setCover, updateBook)
 
 // DELETE by ID
 router.delete('/:id', deleteBook)
